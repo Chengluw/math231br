@@ -12,6 +12,9 @@ Define elliptic genera, and use them to explain how to compute the arc length of
 ## Stein manifolds and the Oka-Grauert principle
 Define Stein manifolds, and explain why every complex topological vector bundle on a complex Stein manifold admits a holomorphic structure
 
+## Cartan-Serre finiteness
+Sketch the proof of the finiteness theorem for sheaf cohomology of coherent modules over the structure sheaf, following Chapter VI of Grauert's book *Theory of Stein spaces*
+
 ## Inoue surfaces
 Provide an overview of the construction and basic properties of *Inoue surfaces*, which are examples of complex surfaces with no divisors.
 
