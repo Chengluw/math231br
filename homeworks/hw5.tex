@@ -1,0 +1,41 @@
+\documentclass[11pt]{amsart}
+\input{../commands.tex}
+
+\newtheorem{hwexercise}{Exercise}
+
+\title{math231br Homework 5 (Due Thursday, 3/5/26)}
+
+\begin{document}
+\maketitle
+
+\begin{hwexercise} Discuss: given a vector bundle $E \to X$, can we recover the vector bundle $E$ from the sheaf $\Sec(-,E)$? If so, how? If not, what extra data would you need to rebuild $E$?
+\end{hwexercise}
+
+
+\begin{hwexercise} Prove the fundamental theorem of calculus we used in the de Rham theorem: if $f(x_1, \ldots, x_n)$ is a differentiable function on the unit ball $B \subseteq \R^n$, then
+\begin{align*}
+    f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1,tx_2, \ldots, tx_n) dt.
+\end{align*}
+\end{hwexercise}
+
+\begin{hwexercise}
+Let $X = \R^2\minus\{(0,0)\}$, and let $H^\ast_\dR(X)$ be the cohomology of the sequence
+\begin{align*}
+    \R \to \Omega^1_\dR(X) \to \Omega^2_\dR(X) \to 0.
+\end{align*}
+Prove that $H^1_\dR(X)$ is a 1-dimensional real vector space spanned by
+\begin{align*}
+    \omega = \frac{x\ dy - y\ dx}{x^2+y^2}.
+\end{align*}
+\end{hwexercise}
+
+\begin{hwexercise}
+Describe the sheaves $\Omega^\ast_\dR$ on the circle $S^1$. What do their sections/stalks look like? What is the cohomology of the sequence
+\begin{align*}
+    \R \to \Omega^1_\dR(S^1) \to \Omega^2_\dR(S^1) \to \cdots
+\end{align*}
+and what are generators for the cohomology groups?
+\end{hwexercise}
+
+
+\end{document}
