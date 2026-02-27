@@ -30,7 +30,7 @@ Discuss the $\widehat{A}$-genus and its connection to spin bordism.
 ## The Hodge-de Rham spectral sequence
 Explain the spectral sequence $H^p(X,\Omega^q) \Rightarrow H^{p+q}(X,\mathbb{C})$ valid for complex manifolds, following Deligne, Fröhlicher, and others. Explain why it degenerates for compact Kähler manifolds, and give examples of the failure of degeneration in other settings.
 
-## Calabi-Eckmann manifolds
+## Calabi-Eckmann manifolds (Dibs: Carl Scandelius)
 Give an intro to Calabi-Eckmann manifolds, following their original paper. Prove that Calabi-Eckmann manifolds do not admit a Kähler metric and therefore are not algebraic, and explain why this is so cool! Time/interest pending, investigate their $\overline{\partial}$ cohomology, following Kodaira-Spencer and Ise, discussed in Appendix II.9 in Hirzebruch.
 
 ## The Lefschetz hyperplane theorem via Morse theory (dibs: Sophie Zhu)
