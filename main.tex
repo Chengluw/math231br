@@ -1653,7 +1653,8 @@ Formally, the exterior algebra of a vector space is the tensor algebra $V^{\otim
 
 Differential forms are expressible in local coordinates, where they admit a nicer shape. Let's see some examples:
 
-\begin{example} On $M = \R^3$, an element of $\Gamma(\R^3,\Omega^1_\dR)$ is expressible as
+\begin{example}\label{exa:1-form-R3-vector-field} 
+On $M = \R^3$, an element of $\Gamma(\R^3,\Omega^1_\dR)$ is expressible as
 \begin{align*}
     f_1(x,y,z) dx + f_2(x,y,z) dy + f_3(x,y,z) dz,
 \end{align*}
@@ -1663,7 +1664,8 @@ where the $f_i$'s are differentiable real-valued functions, $dx$ is the section 
 \end{align*}
 \end{example}
 
-\begin{example} Again on $M = \R^3$, an element of $\Gamma(\R^3,\Omega^2_\dR)$ is something of the form
+\begin{example}\label{exa:2-form-R3-vector-field} 
+Again on $M = \R^3$, an element of $\Gamma(\R^3,\Omega^2_\dR)$ is something of the form
 \begin{align*}
     f_1(x,y,z) dx \wedge dy + f_2(x,y,z) dz\wedge dx + f_3(x,y,z) dy\wedge dx,
 \end{align*}
@@ -1718,12 +1720,12 @@ Let $M$ be a smooth manifold. Show that the exterior derivative in \Cref{def:ext
 
 \subsection{The Poincar\'e lemma}
 
-\begin{exercise}\label{exer:fund-thm-calc} Let $f(x_1, \ldots, x_n)$ be a differentiable real-valued function defined on the unit ball $B \subseteq \R^n$. Show that
-\begin{align*}
-    f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1, \ldots, tx_n)dt.
-\end{align*}
+% \begin{exercise}\label{exer:fund-thm-calc} Let $f(x_1, \ldots, x_n)$ be a differentiable real-valued function defined on the unit ball $B \subseteq \R^n$. Show that
+% \begin{align*}
+%     f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1, \ldots, tx_n)dt.
+% \end{align*}
 
-\end{exercise}
+% \end{exercise}
 
 
 \begin{lemma} [Poincar\'e Lemma]
@@ -1746,34 +1748,52 @@ We leave it as an exercise to show that $d^2 = 0$ (i.e. that exact forms are clo
 \end{align*}
 for some differentiable function $f$ and some multiindex $I = \{i_1 < i_2 < \cdots < i_k\} \subseteq \{1, \ldots, n\}$. What does $d\omega = 0$ mean here? It means precisely that $\frac{\partial f}{\partial x_j} = 0$ for every $j\notin I$.
 
-Let's now consider the scaling map
+We claim that the following $(k-1)$-form $\alpha$ is a primitive for $\omega$:
 \begin{align*}
-    h \colon B \times [0,1] &\to B \\
-    (x,t) &\mapsto tx.
+    \alpha := \sum_{j=1}^k (-1)^{j-1} x_{i_j} \left( \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt \right) dx_{I\minus\{i_j\}}.
 \end{align*}
-We can compute the pullback of $\omega$ along $h$ as
+This form doesn't come out of thin air -- it is obtained explicitly by pulling back along the scaling map $h(x,t) = tx$ for $t\in [0,1]$ and then applying a homotopy operator which ``integrates out'' the $t$. For more details about how you could have come up with this primitive, see for instance \cite[I\S4]{BottTu}.
+
+We check that $d\alpha = \omega$. To simplify notation, let's let
 \begin{align*}
-    h^\ast(\omega) &= f(tx_1, \ldots, tx_n) d(tx_{i_1})\wedge \cdots \wedge d(tx_{i_k}) \\
-    % &= f(tx_1, \ldots, tx_n) \left( dx_I  + \sum_{j=1}^n dx_{i_1} \wedge \cdots \wedge dx_{i_{j-1}} \wedge dt \wedge dx_{i_{j+1}}\wedge \cdots \wedge dx_{i_k}\right) \\
-    &= f(tx_1, \ldots, tx_n) \left( dx_I + dt\wedge \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right).
+    P(x_1, \ldots, x_n) := \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt.
 \end{align*}
-We're going to leverage this to construct a primitive for $\omega$, namely we will define $\alpha$ by ``integrating out'' $t$ from $h^\ast \omega$. Explicitly:
+Then we have that
+\begin{equation}\label{eqn:dalpha-1}
+\begin{aligned}
+    d\alpha &= \sum_{j=1}^k (-1)^{j-1} (P dx_{i_j} + x_{i_j} dP) \wedge dx_{I\minus\{i_j\}} \\
+    &= kPd_I + \sum_{j=1}^k (-1)^{j-1}x_{i_j} dP\wedge dx_{I\minus\{i_j\}}.
+\end{aligned}
+\end{equation}
+We have a decent handle on that first term, so we want to better understand the second term. We compute $dP$, using that we can pass partial derivatives inside the integral, to get
 \begin{align*}
-    \alpha &= \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}.
+    dP &= \sum_{i=1}^n \left(\int_0^1 t^{k} \frac{df}{dx_i}(tx_1, \ldots, tx_n) dt\right)dx_i,
 \end{align*}
-We claim that $d\alpha = \omega$. Note that when we differentiate, it is with respect to the $x_i$'s so we can pull it inside the integral. We get:
+where we notice the power on $t$ increased because of the chain rule. Since $dP$ has a $dx_i$ in it for every $i$, when we wedge with $dx_{I\minus\{i_j\}}$ we will get zero if $i \in I\minus\{i_j\}$. Similarly we will get zero if $i\notin I$, because $\frac{df}{dx_i} = 0$ for any such $i$ by $\omega$ being closed. So the only nonvanishing term in the summand, after wedging with $dx_{I\minus\{i_j\}}$, is when $i = i_j$. That is,
 \begin{align*}
-    d\alpha &= d \left(  \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}. \right) \\
-    &=  \sum_{s=1}^n\left( \int_0^1 \frac{\partial f}{\partial dx_{s}}(tx_1, \ldots, tx_n) dt \right) dx_s \wedge \left( \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right)
+    dP \wedge dx_{I\minus\{i_j\}} &= \left(\int_0^1 t^k \frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt\right) dx_{i_j}\wedge dx_{I\minus\{i_j\}} \\
+    &= \left(\int_0^1 t^k\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n)dt\right) (-1)^{j-1} dx_I.
 \end{align*}
-As all the differentials vanish unless $s\in I$, we get the above is equal to
+Plugging this back in to the second term in the expression for $d\alpha$ in \Cref{eqn:dalpha-1}, we get
 \begin{align*}
-    \sum_{j=1}^k \left(\int_0^1 \frac{\partial f}{\partial x_{i_j}}dt\right) dx_I.
+    \sum_{j=1}^k (-1)^{j-1}x_{i_j} dP\wedge dx_{I\minus\{i_j\}} &= \sum_{j=1}^k x_{i_j} \left( \int_0^1 t^k\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt \right) dx_I.
 \end{align*}
-Finally to verify this equals $\omega$ we use \Cref{exer:fund-thm-calc}. This is a standard version of the fundamental theorem of calculus that holds in star-shaped domains; see for instance \cite[I.1.4]{tuIntroductionManifolds2011}).
+Putting everything together we get that
+\begin{align*}
+    d\alpha = \left( k \left( \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt \right) + \sum_{j=1}^k \int_0^1 t^k x_{i_j}\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt\right)dx_I
+\end{align*}
+So it suffices to check that the smooth function in front of $dx_I$ in the expression above is actually equal to $f(x_1, \ldots, x_n)$. This comes from recognizing that the product rule has been applied! First note that we can change our sum to be indexed over all $x_i$'s without a problem, since all the extra terms it adds are zero. Thus we can rewrite the above as
+\begin{align*}
+    &\int_0^1 \left( k t^{k-1} f(tx_1, \ldots, tx_n) + \sum_{i=1}^n t^k x_i \frac{df}{dx_i}(tx_1, \ldots, tx_n) \right)dt \\
+    &= \int_0^1 \left( f(tx_1, \ldots, tx_n)\cdot\frac{d}{dt}(t^k) + t^k\cdot \frac{d}{dt} f(tx_1, \ldots, tx_n)\right)dt \\
+    &= \int_0^1 \frac{d}{dt} \left( t^k f(tx_1, \ldots, tx_n) \right)dt \\
+    &= t^k f(tx_1, \ldots, tx_n) \mid_{t=0}^{t=1} \\
+    &= f(x_1, \ldots, x_n).
+\end{align*}
+This completes the proof.
 \end{proof}
 
-In general, as we know, applying $\Gamma(M,-)$ to the above sequence will turn it into a chain complex, but will fail to preserve exactness. Here's an easy case where it does preserve exactness: I claim we know this exactness from multivariable calculus!
+In general, as we know, applying $\Gamma(M,-)$ to the sequence in \Cref{eqn:de-Rham-sequence} will turn it into a chain complex, but will fail to preserve exactness. Here's an easy case where it does preserve exactness, which we know from multivariable calculus:
 
 \begin{proposition} On $\R^3$, taking global sections of the resolution from the Poincar\'e lemma gives an \emph{exact sequence}
 \begin{equation}\label{eqn:exact-seq-dR-on-R3}
@@ -1782,7 +1802,7 @@ In general, as we know, applying $\Gamma(M,-)$ to the above sequence will turn i
 \end{aligned}
 \end{equation}
 \end{proposition}
-\begin{proof} Identifying $\Omega^1$ and $\Omega^2$ with vector fields as above, these differentials take a more familiar shape:
+\begin{proof} Identifying $\Omega^1$ and $\Omega^2$ with vector fields as in \Cref{exa:1-form-R3-vector-field,exa:2-form-R3-vector-field}, these differentials take a more familiar shape:
 \begin{align*}
     0 \to C^0(\R^3,\R) \xto{\text{grad}} \Omega^1_\dR(\R^3)\xto{\text{curl}} \Omega^2_\dR(\R^3) \xto{\text{div}} \Omega^3_\dR(\R^3) \to 0.
 \end{align*}
