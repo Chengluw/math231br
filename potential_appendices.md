@@ -41,3 +41,6 @@ Give an overview of Andreotti and Frankel proof of the Lefschetz hyperplane theo
 
 ## Thom's computation of $\pi_\ast \text{MSO}$ (dibs: Joaquim Bocresion)
 Prove Theorem 7.2.2 in Hirzebruch, that $\Omega_k^{\text{SO}}$ is finite for $k\not\equiv0\pmod{4}$ and that $\Omega_{4n}^{\text{SO}} = \mathbb{Z}^{\\#\text{partitions of }n} \oplus \text{finite gp}$, following Thom's 1954 paper. This involves some heavier homotopy theory than other projects.
+
+## Bott periodicity (Dibs: Shokhruz Kakharov)
+Give a classical proof of Bott periodicity via Morse theory following Milnor's book. Applications to the $J$-homomorphism.
