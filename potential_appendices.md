@@ -7,7 +7,7 @@ Everyone taking this class for credit will be responsible for producing an appen
 - Below I'll include a brief overview of each project, as well as a very rough indication of how difficult I expect it to be or any background that may be needed.
 
 ## Leray spectral sequence (Dibs: David Ettel)
-Give an overview of the Leray spectral sequence for sheaves of abelian groups on paracompact spaces.
+Give an overview of the Leray spectral sequence for sheaves of abelian groups on paracompact spaces. Prove that if $E \to X$ is a vector bundle and $\mathbb{P}(E)$ is its projectivization, that $H^\ast(\mathbb{P}(E),\mathbb{Z})$ is free over $H^\ast(X,\mathbb{Z})$.
 
 ## Elliptic genera and the lemniscate (Dibs: Grayson Kemplin)
 Define elliptic genera, and use them to explain how to compute the arc length of the [lemniscate](https://en.wikipedia.org/wiki/Lemniscate). Reference: Chapter 2 of Hirzebruch's *Manifolds and modular forms*
