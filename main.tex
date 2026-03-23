@@ -2747,16 +2747,16 @@ But by the Yoneda lemma, the set of natural transformations of the above is in b
 \begin{theorem}[Borel]
 We have an isomorphism
 \begin{align*}
-    H^\ast(\Gr_\C(r,\infty);\Z) \cong \Z[c_1, \ldots, c_n],
+    H^\ast(\Gr_\C(k,\infty);\Z) \cong \Z[c_1, \ldots, c_k],
 \end{align*}
-where $c_i$ lives in degree $i$.
+where $c_i$ lives in degree $2i$.
 \end{theorem}
 
 \textbf{Constructing Chern classes}: Given any complex vector bundle $E\to X$ of rank $r$ over a paracompact space $X$, it is pulled back from the tautological bundle via some map
 \begin{align*}
     f \colon X \to \Gr_\C(r,\infty).
 \end{align*}
-We construct $c_k(E)$ to be the pullback of $c_k \in H^{2k}(\Gr_\C(r,\infty),\Z)$ under the map $f$.
+We define $c_i(E)$ as the pullback of $c_i \in H^{2i}(\Gr_\C(r,\infty),\Z)$ under the map $f$.
 
 \textbf{Constructing the first Chern class via cocycles on a complex manifold}: If $X$ is paracompact, then by the exponential sequence, we can define $c_1$ to be the composite bijection
 \begin{align*}
@@ -2764,16 +2764,194 @@ We construct $c_k(E)$ to be the pullback of $c_k \in H^{2k}(\Gr_\C(r,\infty),\Z)
 \end{align*}
 Suppose $X$ is a complex manifold, then there is a very nice explicit construction of $c_1$. Given a complex line bundle on $X$, we pick an open cover $\{U_i\}$ of $X$ trivializing the line bundle. After potentially shrinking the $U_i$'s if needed, we may assume they are simply connected and therefore admit well-defined logarithms. Given a cohomology class in $H^1(X,\C^\times)$, we can express it in terms of the transition functions $g_{ij}$. Pick a logarithm $e^{2\pi i f_{ij}} = g_{ij}$ for each. Then the triple overlap condition says that
 \begin{align*}
-    g_{ij} g_{jk} g_{ki} = 1,
+    g_{ij} g_{jk} g_{ki} = 1.
 \end{align*}
-and we define $c_1$ to be
+Taking a logarithm on both sides, we have a well-defined map
 \begin{align*}
-    c_1 := f_{ij} + f_{jk} + f_{ki} \in \Z.
+    f_{ij} + f_{ik} + f_{jk} \colon U_{ijk} &\to \Z.
 \end{align*}
-We claim this integer doesn't depend on the choice of triple overlap $i,j,k$, and that this integer is in fact the first Chern class of the bundle.
+We see that this is a \v{C}ech 2-cocycle, and define its class in $\check{H}^2(\mathcal{U},\Z)$ to be $c_1$ of the line bundle.
+
+\subsection{Flag bundles}
+
+We had this data of a \emph{frame bundle}, which was the principal $U(k)$-bundle associated to complex vector bundle $E \to X$ of rank $k$. The fiber over a point $x \in X$ was an ordered sequence of vectors $(v_1, \ldots, v_k)$ which were unit vectors and pairwise orthogonal. We're going to define a similar construction, where we don't care about the precise vectors, but only their \emph{spans}. This is called the \emph{flag bundle}.
+
+\begin{definition}\label{def:complete-flag-manifold} Let $\Fl(\C^r)$ denote the topological space whose points are: \emph{complete flags}, that is, a sequence of linear subspaces
+\begin{align*}
+    \{0\} \subsetneq F_1 \subsetneq F_2 \subsetneq \cdots \subsetneq F_r = \C^r.
+\end{align*}
+\end{enumerate}
+We claim that there is a homeomorphism
+\begin{align*}
+    \Fl(\C^r)\cong U(r)/U(1)^{\times r},
+\end{align*}
+where $U(1)^{\times r} \subseteq U(r)$ is the subgroup of diagonal unitary matrices.
+\end{definition}
+
+\begin{remark} We have that the flag bundle is obtained from the frame bundle by taking spans. Explicitly, we take the frame bundle $\Fr(E)$, and mod out by the action of $U(1)^{\times r}$ in each fiber.\footnote{There's a sense in which they are associated, but $U(r)$ doesn't act faithfully on $\Fl(\C^r)$ so we have to modify our earlier definitions to make this make any sense. This is omitted.}
+\end{remark}
+
+\begin{example} If $L \to X$ is a line bundle, then $\Fl(L) \cong X$.
+\end{example}
+
+\begin{example} If $E \to X$ is rank two, then $\Fl(E) \to X$ has fibers over $x$ given by $\mathbb{P}(E_x)$, since the data of a flag is the same as the data of a line through the origin in $E_x$.
+\end{example}
+
+\begin{definition}\label{def:projectivization-vector-bundle}
+We can generalize this construction of the flag bundle of a rank two bundle as a projectivization. Given any vector bundle $E \to X$ of rank $r$, we denote by $\mathbb{P}(E)$ the \emph{projectivization} of the vector bundle, whose fiber over $x\in X$ is $\mathbb{P}(E_x)$. The projectivized bundle $\mathbb{P}(E) \to X$ is a fiber bundle with structure group $\GL_r(\C)$ and fiber $\CP^{r-1}$.
+\end{definition}
+
+While the flag bundle and projectivization agree for rank two bundles, they don't for rank three bundles, since a line in $\C^3$ is not the same data as a complete flag. Let's let $E \to X$ be rank three, and consider the map
+\begin{align*}
+    \pi \colon \mathbb{P}(E) \to X.
+\end{align*}
+Just as projective space has a tautological line bundle over it, so does the projectivization of a vector bundle. We define
+\begin{align*}
+    \mathcal{S}_E = \left\{ \ell \in \mathbb{P}(E) \mid \ell \subseteq E_x,\ \pi(\ell) = x \right\}.
+\end{align*}
+%
+We have that $\mathcal{S}_E$ can be viewed as a subbundle of $\pi^{-1}(E)$ over $\mathbb{P}(E)$, so we get a short exact sequence of vector bundles
+\begin{align*}
+    \mathcal{S}_E \to \pi^{-1}(E) \to Q_E
+\end{align*}
+over $\mathbb{P}(E)$. This quotient bundle $Q_E$ has rank two, and we can now define
+\begin{align*}
+    \pi' \colon \mathbb{P}(Q_E) \to \mathbb{P}(E).
+\end{align*}
+% Pulling back $Q_E$ to $\mathbb{P}(Q_E)$, again there is a tautological line bundle in it, and the quotient is a line bundle.
+
+\begin{claim} In the explanation above, we have that $\mathbb{P}(Q_E) \cong \Fl(E)$.
+\end{claim}
+
+To justify this claim, let's work through the definition of a point in $\mathbb{P}(Q_E)$. Over $\mathbb{P}(E)$, the short exact sequence splits (every short exact sequence of topological or smooth bundles splits) as:
+\begin{align*}
+    \pi^{-1}(E) \cong \mathcal{S}_E \oplus Q_E.
+\end{align*}
+So a point $q\in \mathbb{P}(Q_E)$ has a projection to $\ell\in \mathbb{P}(E)$, which represents a line in $\mathcal{S}_E$. The point $q$, via the tautological bundle on $\mathbb{P}(Q_E)$, represents a line in $Q_E$, which is fiberwise identified with the orthogonal complement of $\mathcal{S}_E$ in $\pi^{-1}(E)$. So the data is an ordered tuple of two linearly independent vectors in $E_x$ for each $x\in X$.
+
+This is a rough sketch, but it details a general construction of the flag bundle --- projectivize, pull back, split, iterate.
+
+\subsection{The splitting principle}
+
+Before proving the splitting principle, we need the following:
+
+\begin{lemma} We have that $H^\ast(\mathbb{P}(E),\Z)$ is a free module over $H^\ast(X,\Z)$ generated by $x = c_1(\mathcal{S}^\ast)$, subject to the relation
+\begin{align*}
+    x^n + c_1(E)x^{n-1} + \ldots + c_n(E),
+\end{align*}
+where $n$ is the rank of $E$.
+\end{lemma}
+This is a consequence of the Leray-Hirsch theorem.
+
+\begin{theorem}[Splitting principle for projectivizations] Let $E \to X$ be a complex vector bundle. Then if $\pi \colon \Fl(E) \to X$ denotes the flag bundle, we have that:
+\begin{enumerate}
+    \item The induced map $\pi^\ast \colon H^\ast(X,\Z) \to H^\ast(\Fl(E),\Z)$ is injective
+    \item The pullback bundle $\pi^\ast E \to \Fl(E)$ decomposes as a sum of line bundles:
+    \begin{align*}
+        \pi^\ast(E) \cong L_1 \oplus \ldots \oplus L_r.
+    \end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof} It suffices to prove this inductively. If $E$ has rank $1$, this is clear, since $\Fl(E) \cong X$. Suppose we know it up to rank $r-1$, and let $E \to X$ be any bundle of rank $r$. Then we have that
+\begin{align*}
+    \pi \colon \mathbb{P}(E) \to X,
+\end{align*}
+and pulling back we get that $\pi^{-1}(E) \cong \mathcal{S}_E \oplus Q_E$, where $Q_E$ has rank $n-1$. We can apply the lemma to $\pi^\ast$ to get injectivity, then we apply the inductive step to conclude.
+\end{proof}
+
+\begin{slogan} Any statement we want to prove about vector bundles, we can assume the vector bundle is split into a sum of line bundles.
+\end{slogan}
 
 
 
+
+\subsection{More about Chern classes}
+
+\begin{exercise} For any space $X$, the group structure on $H^1(X,\mathbb{C}^\ast)$ corresponds, under the isomorphism $H^1(X,\mathbb{C}^\ast) \cong \Vect_\C^1(X)$, to tensor products of line bundles. The unit is the trivial line bundle, and the inverse is the dual bundle.
+\end{exercise}
+
+Once we've proven this exercise, the following proposition is immediate (since we defined $c_1$ as a connecting homomorphism in the long exact sequence of sheaf cohomology coming from the exponential sequence, it is clear that it is a group homomorphism).
+
+\begin{proposition} The map
+\begin{align*}
+    c_1 \colon \Vect_\C^1(X) \to H^2(X,\Z)
+\end{align*}
+is a group homomorphism, so $c_1(L^\ast) = -c_1(L)$ for any line bundle $L$.
+\end{proposition}
+
+\begin{corollary} Let $E \to X$ be a bundle and $E^\ast$ the \emph{dual} vector bundle. Then $c_k(E^\ast) = (-1)^k c_k(E)$.
+\end{corollary}
+\begin{proof} Let $\pi \colon \Fl(E) \to X$ be the flag bundle map. By the splitting principle, $\pi^\ast \colon H^\ast(X,\Z) \to H^\ast(\Fl(E),\Z)$ is injective on cohomology, so it suffices to prove that $c_k(\pi^\ast E^\ast) = (-1)^k c_k(\pi^\ast E^\ast)$ in $H^\ast(\Fl(E),\Z)$. Also by the splitting principle, we have that
+\begin{align*}
+    \pi^\ast E \cong L_1 \oplus \ldots \oplus L_k.
+\end{align*}
+Since dualizing a bundle is a fiberwise construction, it is clearly natural under pullback (i.e. we can dualize then pull back, or pull back and then dualize. Moreover, dualization commutes with direct sums, so we get that
+\begin{align*}
+    \pi^\ast E^\ast \cong L_1^\ast \oplus \ldots \oplus L_k^\ast.
+\end{align*}
+We compute the Chern polynomial of $\pi^\ast E^\ast$ as
+\begin{align*}
+    c(\pi^\ast E^\ast) = \prod_i c(L_i^\ast) = \prod (1 - c_1(L_i)).
+\end{align*}
+Since $c(\pi^\ast E) = \prod (1+ c_1(L_i))$, the result is clear.
+\end{proof}
+
+\begin{proposition}
+Let $E \to X$ be a trivial complex vector bundle of rank $r$. Then its total Chern class is $c(E) =1$, that is, $c_k(E) = 0$ for $k\ge1$.
+\end{proposition}
+\begin{proof}
+The map $X \to \Gr_\C(r,\infty)$ classifying a trivial bundle is homotopic to a constant map, hence factors through a point. Therefore the induced map on cohomology factors through the integral cohomology of a point, which is just $\Z$ in degree zero.
+\end{proof}
+
+\begin{proposition}\label{prop:chern-numbers-cpn} 
+We have that
+\begin{align*}
+    c(T\CP^n) = (1+h)^{n+1}.
+\end{align*}
+\end{proposition}
+\begin{proof} Letting $\epsilon^1$ denote the trivial line bundle on projective space, and $E_1$ the tautological bundle, there is a short exact sequence
+\begin{align*}
+    0 \to \epsilon^1 \to (E_1^\ast)^{\oplus (n+1)} \to T\CP^n \to 0.
+\end{align*}
+Therefore we have that
+\begin{align*}
+    c(T\CP^n) = \prod_{i=1}^{n+1}c(E_1^\ast) = \prod_{i=1}^{n+1}(1+h).
+\end{align*}
+\end{proof}
+
+\subsection{Gysin integration}
+
+Let $X$ be a smooth $n$-dimensional manifold, let $E\to X$ be a smooth rank $r$ real vector bundle, and let $\pi \colon \Fl(E) \to X$ be the projection map from the total flag space. We recall that $\pi^\ast$ is injective on cohomology by the splitting principle. There is a map back the other way, called the \emph{Gysin map} or \emph{integration in fibers}:
+\begin{align*}
+    \pi_\ast \colon H^\ast(\Fl(E),\Z) \to H^{\ast - r(r-1)/2}(X,\Z).
+\end{align*}
+We won't define it formally in this class, but the most elegant definitions come from the world of de Rham cohomology. Since $\Fl(E) \to X$ is a principal $O(r)$-bundle, locally $\Fl(E)$ looks like a neighborhood in $X$ crossed with $O(r)$. A differential form on this neighborhood looks like a form on $O(r)$ crossed with a form on a neighborhood of $X$, so we can integrate out the part of the form coming from $O(r)$. This drops the dimension of the form by $\dim O(r) = r(r-1)/2$. For a formal construction, see \cite[\S6]{BottTu} for instance.
+
+While we stated this for smooth bundles over smooth manifolds, this holds in the topological context just as well (we just need slightly different machinery to define it). We state some properties of Gysin integration without proof:
+
+\begin{proposition}[Properties of Gysin maps]
+\label{prop:properties-Gysin-integration}
+Let $X$ be a paracompact space, let $E \to X$ be a vector bundle of rank $r$, and let $\pi \colon \Fl(E) \to X$ be the associated principal $O(r)$-bundle.
+\begin{enumerate}
+    \item \emph{Projection}: Given any cohomology class $\omega \in H^\ast(\Fl(E),\Z)$, and any cohomology class $\alpha\in H^\ast(X,\Z)$, we have that
+    \begin{align*}
+        \pi_\ast (\pi^\ast \alpha \cdot \omega) = \alpha \cdot \pi_\ast \omega.
+    \end{align*}
+    \item \emph{Interchange/base change} Let $f \colon Y \to X$ be any continuous map, and consider the pullback bundle:
+\[ \begin{tikzcd}
+    f^\ast \Fl(E)\rar["i" above]\dar["p" left]\pb & \Fl(E)\dar["\pi" right]\\
+    Y\rar["f" below] & X.
+\end{tikzcd} \]
+Then we have that
+\begin{align*}
+    f^\ast\pi_\ast = p_\ast i^\ast
+\end{align*}
+as maps
+\begin{align*}
+    H^\ast(\Fl(E),\Z) \to H^{\ast - r(r-1)/2}(Y,\Z).
+\end{align*}
+\end{enumerate}
+\end{proposition}
 
 
 
