@@ -18,7 +18,7 @@ The Leray spectral sequence is named after its inventor Jean Leray, a French mat
  Jean Leray's most decisive mathematical turn came during his imprisonment in Oflag XVIIA in Austria from 1940 to 1945. Trained mainly in analysis and fluid mechanics, he deliberately shifted toward algebraic topology while in captivity, partly to avoid being used for technical work by the German war effort. Nota bene: Leray spectral sequences are thus a memorial of civilian resistance against the Nazi regime. In the prison camp he helped organize an improvised university and developed a new, deeply local approach to topology. 
 
 
- It was in this prison setting that the ideas behind sheaves, sheaf cohomology, and eventually the Leray spectral sequence first emerged. Leray wanted tools that could study very general spaces without relying so heavily on simplicial methods. This led him to organize cohomological information in successive layers. After the war, these wartime ideas were announced in 1946 and later reshaped by Cartan, Koszul, Borel, and Serre into the modern form of the Leray spectral sequence \cite{Miller}. 
+ It was in this prison setting that the ideas behind sheaves, sheaf cohomology, and eventually the Leray spectral sequence first emerged. Leray wanted tools that could study very general spaces without relying so heavily on simplicial methods. This led him to organize cohomological information in successive layers. After the war, these wartime ideas were announced in 1946 and later reshaped by Cartan, Koszul, Borel, and Serre into the modern form of the Leray spectral sequence \cite{Miller}. \todo{Anders schreien}
 
 
 \section{Spectral Sequences}
@@ -26,55 +26,60 @@ A comprehensive introduction to spectral sequences is out of scope for this appe
 
 We intend to later provide  a sketch of the "approximate definition" from \cite{risingsea}.
 
-
-
-
-
+\todo{approximate introduction}
 
 
 \section{Leray Spectral Sequence}
-Before we can state the existence theorem for the Leray spectral sequence, which will also serve as its definition, we will have to introduce the notion of a hihger direct imgage sheaf. 
 
-\begin{definition}[Higher Direct Image Sheaf \cite{hartshorne}]
-Let $\mathcal{F}$ be a sheaf on $X$ and $f: X\to Y$ be a map. Then we define the \textit{$q$-th higher direct image sheaf of $\mathcal{F}$ under the map $f$} to be the sheaf $R^qf_*(\mathcal{F})$ where for every open $U\subset Y$
+Before stating the existence theorem for the Leray spectral sequence, we first introduce the notion of a higher direct image sheaf.
+
+\begin{definition}[Higher Direct Image Sheaf {\cite{hartshorne}}]
+Let $\mathcal{F}$ be a sheaf on $X$, and let $f:X\to Y$ be a continuous map. The \textit{$q$-th higher direct image sheaf of $\mathcal{F}$ under $f$} is the sheaf $R^qf_*(\mathcal{F})$ associated to the presheaf
 \begin{equation*}
-    (R^qf_*(\mathcal{F}))(U) =H^q(f^{-1}(U);\  \mathcal{F}).
+    U \mapsto H^q(f^{-1}(U);\mathcal{F})
 \end{equation*}
-    
+for each open set $U\subseteq Y$.
 \end{definition}
-Intuitively, the higher direct image sheaf $R^qf_*\mathcal F$ records how the $q$-dimensional cohomological information in the fibers and nearby fibers varies as we move around the base space. With this definition in hand we can now state the theorem.
-\begin{theorem}[Leray Spectral Sequence]
-    Let $X$ and $Y$ be paracompact  spaces and let $f:X\to Y$ be a continuous map. Let $\mathcal{F}$ be a sheaf of abelian groups on $X$. Then there exists a spectral sequence in which
-    \begin{equation*}
-        E^{p,q}_2  = H^p\left(Y;\  R^q f_* (\mathcal{F})\right)
-    \end{equation*}
-    and which converges to 
-    \begin{equation*}
-        E^{p+q} = H^{p+q}(X;\  \mathcal{F}).
-    \end{equation*}
+
+Intuitively, the higher direct image sheaf $R^qf_*\mathcal{F}$ records how the degree-$q$ cohomology of the fibers, and of nearby inverse images, varies over the base space. With this notion in hand, we can now state the existence theorem for the Leray spectral sequence.
+
+\begin{theorem}[Leray Spectral Sequence \cite{risingsea}]
+Let $X$ and $Y$ be paracompact spaces, let $f:X\to Y$ be a continuous map, and let $\mathcal{F}$ be a sheaf of abelian groups on $X$. Then there exists a spectral sequence with
+\begin{equation*}
+    E_2^{p,q}=H^p\bigl(Y;R^qf_*(\mathcal{F})\bigr)
+\end{equation*}
+which converges to
+\begin{equation*}
+    H^{p+q}(X;\mathcal{F}).
+\end{equation*}
 \end{theorem}
 
 \begin{definition}[System of Local Coefficients on $X$]
-   Let $X$ be a topological space. Then we use the term \textit{system of local coefficients on $X$} to denote a sheaf on $X$ that is locally constant.
+Let $X$ be a topological space. A \textit{system of local coefficients on $X$} is a locally constant sheaf on $X$.
 
-    A local system is called \textit{simple} if the fundamental group of $X$ acts trivially on its fibers.   
-
-   
+Such a local system is called \textit{simple} if the action of $\pi_1(X)$ on its fibers is trivial.
 \end{definition}
 
-If the local system is simple or constant, the Leray spectral sequence specializes to the so-called Leray-Serre spectral sequence which has the following property.
+When $\pi:E\to X$ is a locally trivial fibration with fiber $F$ and $\mathcal F=\underline{R}_E$ is the constant sheaf, the higher direct image sheaves $R^q\pi_*\underline{R}_E$ are locally constant on $X$, with stalk naturally isomorphic to $H^q(F;R)$. Thus the Leray spectral sequence becomes
+\[
+E_2^{p,q}=H^p(X;R^q\pi_*\underline{R}_E),
+\]
+which, after identifying sheaf cohomology of a local system with singular cohomology with local coefficients, is the Leray--Serre spectral sequence.
 
-\begin{theorem}[Leray-Serre Spectral Sequence \cite{mccleary}]
-    Let $R$ be a commutative ring with unit.
-    Suppose $F\hookrightarrow E \overset{\pi}{\to} X$ is a fibration, where $F$ is connected and $X$ is path-connected. Then there exists a first quadrant spectral sequence of algebras, $\{E_r^{*,*}, d_r\}$ which converges to 
-    \begin{equation*}
-        H^*(E;\ R)
-    \end{equation*}
-    as an algebra where
-    \begin{equation*}
-        E^{p,q}_2\cong H^p(X; \ H^q(F, R)),
-    \end{equation*}
-    the cohomology of the space $X$ with local coefficients in the cohomology of the fiber of $\pi$.
+\begin{theorem}[Leray--Serre Spectral Sequence {\cite{mccleary}}]
+Let $R$ be a commutative ring with unit. Suppose
+\begin{equation*}
+    F\hookrightarrow E \overset{\pi}{\to} X
+\end{equation*}
+is a fibration, where $F$ is connected and $X$ is path-connected. Then there exists a first-quadrant spectral sequence of algebras $\{E_r^{*,*},d_r\}$ converging to
+\begin{equation*}
+    H^*(E;R)
+\end{equation*}
+as an algebra, with
+\begin{equation*}
+    E_2^{p,q}\cong H^p\bigl(X;H^q(F;R)\bigr),
+\end{equation*}
+where $H^q(F;R)$ is regarded as a local coefficient system on $X$ induced by the fibration.
 \end{theorem}
 
 
@@ -94,7 +99,7 @@ Now that we know what a Leray spectral sequence is and that it exists, we can us
 The next condition captures the key cohomological behavior of the fiber that makes the Leray-Hirsch argument work. Roughly speaking, it says that every cohomology class on the fiber already comes from a class on the total space.
 
 
-\begin{definition}[Totally Nonohomologous to Zero]
+\begin{definition}[Totally Nonohomologous to Zero \cite{mccleary}]
     Let $F\overset{\iota}{\hookrightarrow }E\to X$ be a fibration. We say that $F$ is \textit{totally nonhomologous to zero in $E$ with respect to the ring $R$} if the induced homomorphism of cohomologies
     \begin{equation*}
         \iota: H^*(E;\ R) \to H^*(F;\ R)
@@ -103,7 +108,7 @@ The next condition captures the key cohomological behavior of the fiber that mak
 \end{definition}
 
 It turns out that this property is, under sufficiently nice conditions on the underlying fibration, enough to make the spectral sequence collapse at the second table.
-\begin{theorem}\label{fax}
+\begin{theorem}\label{fax} \cite{mccleary}
     Let $F\overset{i}{\hookrightarrow} E \overset{\pi}{\longrightarrow}X$ be a fibration with $F$ connected, $X$ path connected and of finite type, and for which the system of local coefficients on $X$ is simple.
     
     $F$ is totally nonhomologous to zero in $E$ with respect to $k$ if and only if the spectral sequence, $E_r(X,E,F)$, collapses at the $E_2$-term.
@@ -136,7 +141,7 @@ It turns out that this property is, under sufficiently nice conditions on the un
     \begin{equation}\label{superpower}
         E_2^{p,q}\cong H^p(X;\ k)\otimes_k H^q(F;\ k)
     \end{equation}
-    by.
+    by \todo{Ja weswegen denn eigentlich?}.
     This means in particular that
     \begin{equation}\label{oans}
         \begin{align*}
@@ -177,7 +182,7 @@ It turns out that this property is, under sufficiently nice conditions on the un
 
 This theorem allows us to now state the famous Leray-Hirsch Theorem as a simple corollary.
 
-\begin{corollary}[Leray-Hirsch]
+\begin{corollary}[Leray-Hirsch \cite{mccleary}]
     Let $F\overset{i}{\hookrightarrow} E \overset{\pi}{\longrightarrow}X$ be a fibration with $F$ connected, $X$ path connected and of finite type, and for which the system of local coefficients on $X$ is simple.
 
     If $F$ is totally nonhomologous to zero in $E$ with respect to a field $k$, then
@@ -199,7 +204,7 @@ where the $F^pH^n$ come from the filtration
 \begin{equation*}
     H^n(E;\ k)=F^0H^n \supseteq F^1H^n \supseteq F^2H^n \supseteq \cdots
 \end{equation*}
-This means that the graded pieces of $H^*(E;\ k)$ are the same as these of $H^*(X, \ k) \otimes_k H^*(F,\ k)$. Since we are over a field this gives us an isomorphism of vector spaces.
+This means that the graded pieces of $H^*(E;\ k)$ are the same as these of $H^*(X, \ k) \otimes_k H^*(F,\ k)$. Since we are over a field this gives us an isomorphism of vector spaces. \todo{verstehe nicht ganz wieso unds das einen isomorphism of vector spaces gibt.}
 
 \end{proof}
 
@@ -216,14 +221,14 @@ Let $E\to X$ be a rank $r$ vector bundle. Then we define the projectivization $\
 \end{example}
 
 \begin{theorem}
-    Let $E\to X$ be a vector bundle over a finite type path connected space $X$ for which the system of local coefficients on $X$ is simple. Let   $\P[E]$ denote its projectivization. Then $H^*(\P(E);\ \Z)$ is free over $H^*(X;\ \Z)$.
+    Let $E\to X$ be a vector bundle over a finite type path connected space $X$ for which the system of local coefficients on $X$ is simple \todo{The original statement that Thomas gave me does not assume path connectedness, finite type, or simple local coefficients}. Let   $\P[E]$ denote its projectivization. Then $H^*(\P(E);\ \Z)$ is free over $H^*(X;\ \Z)$.
 \end{theorem}
 \begin{proof}
     This is a direct consequence of Leray-Hirsch. We have the fibration
     \begin{equation*}
         \P^{r-1} \hookrightarrow E \to X
     \end{equation*}
-   The fiber $\P^{r-1}$ is famously connected. It is also nonhomologous to zero in $\P[E]$  over $\Z$.
+   The fiber $\P^{r-1}$ is famously connected. It is also nonhomologous to zero in $\P[E]$  over $\Z$ since \todo{First figure out what this really means.}
 
    Therefore, Leray-Hirsch specializes to
    \begin{equation}\label{special}
@@ -232,7 +237,7 @@ Let $E\to X$ be a rank $r$ vector bundle. Then we define the projectivization $\
   By Hatcher \cite{Hatcher} theorem 3.19  
   \begin{equation*}
       H^*(\mathbb{P}^{n-1};\ \mathbb{Z}) \cong \mathbb{Z}[\alpha]/(\alpha^{n})\cong \bigoplus_{i=0}^{n-1}\alpha^i \Z \cong \bigoplus_{i=0}^{n-1} \Z
-  \end{equation*} Note that we here assume that the vector bundle is complex, in case of a real vector bundle the isomorphism is dependent on the $q$ of $H^q$.
+  \end{equation*}\todo{Der zweite Isomorphism macht nur Sinn wenn wir es als gruppe verstehen, aber leray hirsch kümmert sich um vector spaces...}. Note that we here assume that the vector bundle is complex, in case of a real vector bundle the isomorphism is dependent on the $q$ of $H^q$.
   Plugging this into equation \eqref{special} we get that 
   \begin{align*}
        H^*(\P[E];\ \Z) &\cong  H^*(X;\ \Z)\otimes_\Z \bigoplus_{i=0}^{n-1} \Z \\
@@ -250,6 +255,8 @@ It is relevant because it tells us that the cohomology of the projectivization $
 
 This is useful both conceptually and computationally. On the computational side, freeness over $H^*(X;\Z)$ is the key step toward the projective bundle formula, which gives an explicit description of $H^*(\P[E];\Z)$ in terms of $H^*(X;\Z)$ and the Chern classes of $E$. On the conceptual side, this theorem provides one of the most important applications of the Leray-Hirsch theorem and serves as a model for many other arguments in the theory of characteristic classes, especially the splitting principle, where one studies a vector bundle by passing to a space over which it decomposes into line bundles.
 
+\bibliography{zbib.bib}
+\bibliographystyle{amsalpha}
 
 
 
